@@ -1,4 +1,3 @@
-// src/context/ImagenContext.js
 import React, { createContext, useContext } from 'react';
 
 // Importación de imágenes

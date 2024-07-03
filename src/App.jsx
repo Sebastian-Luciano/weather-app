@@ -2,11 +2,11 @@ import React from 'react';
 import MostrarClima from './components/MostrarClima';
 import TarjetaPronostico from './components/TarjetaPronostico';
 import TarjetaDestacada from './components/TarjetaDestacada';
-import { useClima } from './hooks/useClima';
+import { useClimaSearch } from './context/ClimaSearchContext';
 
 
 export default function App() {
-  const { pronostico, climaActual, cambiarUnidad, unidad } = useClima();
+   const { pronostico, climaActual, cambiarUnidad, unidad } = useClimaSearch();
 
   return (
     <div className='w-[1440px] min-h-screen bg-[#100E1D] text-white font-raleway'>
