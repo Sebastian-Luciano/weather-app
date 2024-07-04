@@ -9,7 +9,6 @@ export default function TarjetaPronostico({ dia, index }) {
   const imagenContext = useImagen();
   const { getImagenClima } = imagenContext;
 
-
   const tempMax = unidad === 'C' ? dia.main.temp_max : (dia.main.temp_max * 9 / 5) + 32;
   const tempMin = unidad === 'C' ? dia.main.temp_min : (dia.main.temp_min * 9 / 5) + 32;
 
@@ -28,7 +27,7 @@ export default function TarjetaPronostico({ dia, index }) {
 
 
   return (
-    <div className="bg-[#1E213A] p-4 rounded-lg text-white text-center w-full max-w-[120px] h-[177px] sm:h-auto">
+    <div className="bg-[#1E213A] p-4 text-white text-center w-full max-w-[120px] h-[177px] sm:h-auto">
       <p className="text-sm mb-2">{diaTexto}</p>
       <img
         src={getImagenClima(dia.weather[0].icon, dia.weather[0].description)}

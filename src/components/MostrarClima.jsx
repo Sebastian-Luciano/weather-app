@@ -1,38 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { useClimaSearch } from '../context/ClimaSearchContext';
+import React, { useState, useEffect } from 'react';
 import { useImagen } from '../context/ImagenContext';
 import SearchModal from './SearchModal';
+import { useClima } from '../hooks/useClima';
 
 export default function MostrarClima() {
-  const { climaActual, ciudad, unidad, actualizarClima } = useClimaSearch();
+  const { climaActual, ciudad, unidad, activarGeolocalizacion } = useClima();
   const { getImagenClima } = useImagen();
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     activarGeolocalizacion();
-  }, []);
+  }, [activarGeolocalizacion]);
 
-  const activarGeolocalizacion = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          actualizarClima(`${latitude},${longitude}`);
-        },
-        () => {
-          console.log("Geolocation not available or permission denied");
-          actualizarClima('Helsinki'); // Ciudad por defecto si falla la geolocalización
-        },
-        {
-          enableHighAccuracy: true,
-          maximumAge: 30000,
-          timeout: 27000,
-        }
-      );
-    }
-  };
-
-  if (!climaActual) return <div>Cargando...</div>;
+  if (!climaActual) {
+    return <div className="text-white text-center p-4">Cargando...</div>;
+  }
 
   const weatherImage = getImagenClima(climaActual.weather[0].icon, climaActual.weather[0].description);
   const temperatura = unidad === 'C' ? climaActual.main.temp : (climaActual.main.temp * 9 / 5) + 32;

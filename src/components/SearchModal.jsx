@@ -1,13 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
-import { useClimaSearch } from '../context/ClimaSearchContext';
-
+import { useClima } from '../hooks/useClima';
 
 export default function SearchModal({ isOpen, onClose }) {
     const [searchTerm, setSearchTerm] = useState('');
-    const { results, lastSearch, buscarLocaciones } = useClimaSearch();
-    const { buscarClimaManual } = useClima();
-
+    const { results, lastSearch, buscarLocaciones, buscarClimaManual, resetBusquedaManual } = useClima();
     useEffect(() => {
         if (!isOpen) {
             setSearchTerm('');
@@ -20,9 +16,15 @@ export default function SearchModal({ isOpen, onClose }) {
         setSearchTerm('');
     };
 
-
     const handleSelectLocation = (lat, lon) => {
-        buscarClimaManual(`${lat},${lon}`);
+        if (typeof resetBusquedaManual === 'function') {
+            resetBusquedaManual();
+        }
+        if (typeof buscarClimaManual === 'function') {
+            buscarClimaManual(`${lat},${lon}`);
+        } else {
+            console.error('buscarClimaManual no es una función');
+        }
         onClose();
     };
 
