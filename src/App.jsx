@@ -9,10 +9,6 @@ export default function App() {
   const { pronostico, climaActual, cambiarUnidad, unidad, error, actualizarClima } = useClimaSearch();
 
   useEffect(() => {
-    console.log('Estado en App:', { pronostico, climaActual, unidad, error });
-  }, [pronostico, climaActual, unidad, error]);
-
-  useEffect(() => {
     actualizarClima('Helsinki'); 
   }, [actualizarClima]);
 

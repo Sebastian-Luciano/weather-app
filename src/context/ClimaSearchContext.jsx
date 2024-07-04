@@ -14,14 +14,11 @@ export const ClimaSearchProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const actualizarClima = useCallback(async (ubicacion) => {
-    console.log('Actualizando clima para:', ubicacion);
     setIsLoading(true);
     try {
       setError(null);
       const datosClima = await obtenerClima(ubicacion);
       const datosPronostico = await obtenerPronostico(ubicacion);
-      console.log('Datos de clima obtenidos:', datosClima);
-      console.log('Datos de pronóstico obtenidos:', datosPronostico);
       setClimaActual(datosClima);
       setPronostico(datosPronostico);
       setCiudad(datosClima.name);

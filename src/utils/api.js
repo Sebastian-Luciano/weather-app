@@ -42,13 +42,10 @@ const obtenerClimaConReintento = async (url, intentos = 3) => {
 };
 
 export const obtenerClima = async (ubicacion) => {
-  console.log('Intentando obtener clima para:', ubicacion);
   const cacheKey = `clima_${ubicacion}`;
   const cachedData = obtenerDelCache(cacheKey);
   
   if (cachedData) {
-    console.log('Datos de clima obtenidos del caché:', cachedData);
-    console.log('Datos obtenidos del caché');
     return cachedData;
   }
 
@@ -58,9 +55,7 @@ export const obtenerClima = async (ubicacion) => {
     : `https://api.openweathermap.org/data/2.5/weather?q=${ubicacion}&appid=${API_KEY}&units=metric`;
   
   const data = await obtenerClimaConReintento(url);
-  console.log('Datos de clima obtenidos de la API:', data);
   guardarEnCache(cacheKey, data);
-  console.log('Datos obtenidos de la API y guardados en caché');
   return data;
 };
 
@@ -82,7 +77,6 @@ export const obtenerLocaciones = async (searchTerm) => {
   }));
 
   guardarEnCache(cacheKey, locationsWithCountry);
-  console.log('Locaciones obtenidas de la API y guardadas en caché');
   return locationsWithCountry;
 };
 
@@ -91,7 +85,6 @@ export const obtenerPronostico = async (ubicacion) => {
   const cachedData = obtenerDelCache(cacheKey);
 
   if (cachedData) {
-    console.log('Pronóstico obtenido del caché');
     return cachedData;
   }
 
@@ -102,6 +95,5 @@ export const obtenerPronostico = async (ubicacion) => {
   
   const data = await obtenerClimaConReintento(url);
   guardarEnCache(cacheKey, data);
-  console.log('Pronóstico obtenido de la API y guardado en caché');
   return data;
 };
