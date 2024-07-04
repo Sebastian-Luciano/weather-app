@@ -68,7 +68,7 @@ export const obtenerLocaciones = async (searchTerm) => {
     return cachedData;
   }
 
-  const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchTerm}&limit=5&appid=${API_KEY}`);
+  const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${searchTerm}&limit=5&appid=${API_KEY}`);
   const data = await response.json();
   const locationsWithCountry = await Promise.all(data.map(async (result) => {
     const countryResponse = await fetch(`https://restcountries.com/v3.1/alpha/${result.country}`);
