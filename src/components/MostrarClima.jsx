@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useImagen } from '../context/ImagenContext';
 import SearchModal from './SearchModal';
 import { useClima } from '../hooks/useClima';
+import BackgroundFondo from '../imagen/CloudBackground.png'
 
 export default function MostrarClima() {
   const { climaActual, ciudad, unidad, activarGeolocalizacion } = useClima();
@@ -25,7 +26,7 @@ export default function MostrarClima() {
 
   return (
     <div className='relative w-full h-full bg-[#1E213A] overflow-hidden flex flex-col justify-between'>
-      <img src='src/imagen/Cloud-background.png' alt='Cloud background' className='absolute top-8 left-0 object-cover w-full h-[40%] opacity-10' />
+     <img src={BackgroundFondo} alt='Cloud background' className='absolute top-8 left-0 object-cover w-full h-[40%] opacity-10' />
       <div className='relative z-10 p-4 flex flex-col h-full'>
         <div className='flex justify-between mb-4'>
           <button
