@@ -24,13 +24,13 @@ export default function MostrarClima() {
   const dateString = today.toLocaleDateString('en-GB', options);
 
   return (
-    <div className='relative w-full lg:w-[459px] h-screen lg:h-[1023px] bg-[#1E213A] overflow-hidden'>
+    <div className='relative w-full h-full bg-[#1E213A] overflow-hidden flex flex-col justify-between'>
       <img src='src/imagen/Cloud-background.png' alt='Cloud background' className='absolute top-8 left-0 object-cover w-full h-[40%] opacity-10' />
       <div className='relative z-10 p-4 flex flex-col h-full'>
         <div className='flex justify-between mb-4'>
           <button
             onClick={() => setShowModal(true)}
-            className='bg-gray-500 text-white px-4 py-2 rounded'
+            className='bg-gray-500 text-white px-4 py-2'
           >
             Search for places
           </button>
@@ -42,15 +42,17 @@ export default function MostrarClima() {
           </button>
         </div>
         <div className='flex-grow flex flex-col items-center justify-center'>
-          <img src={weatherImage} alt={climaActual.weather[0].description} className='w-52 h-52 object-contain mb-20' />
-          <p className='text-9xl font-light mt-5 mb-8'>{Math.round(temperatura)}<span className='text-5xl'>°{unidad}</span></p>
+          <img src={weatherImage} alt={climaActual.weather[0].description} className='w-[150px] h-[174px] lg:w-52 lg:h-52 object-contain lg:mb-16 mb-10 lg:pb-16' />
+          <p className='text-[144px] lg:text-9xl font-light mt-5 mb-8'>{Math.round(temperatura)}<span className='text-5xl'>°{unidad}</span></p>
           <p className='text-4xl text-gray-400 mt-5 mb-8'>{climaActual.weather[0].main}</p>
-          <p className='text-lg text-gray-400 mt-[80px] pt-12'>Today • {dateString}</p>
-          <p className='text-lg flex items-center mt-6'>
-            <span className='material-icons mr-2'>location_on</span>
-            {ciudad}
-          </p>
         </div>
+      </div>
+      <div className='p-4 mt-auto text-center'>
+        <p className='text-lg text-gray-400 mb-4'>Today • {dateString}</p>
+        <p className='text-lg flex items-center justify-center'>
+          <span className='material-icons mr-2'>location_on</span>
+          {ciudad}
+        </p>
       </div>
       <SearchModal isOpen={showModal} onClose={() => setShowModal(false)} />
     </div>

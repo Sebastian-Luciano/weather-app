@@ -94,7 +94,7 @@ export default function TarjetaDestacada({ titulo, valor, tipo }) {
   };
 
   return (
-    <div className={`bg-[#1E213A] p-4  text-white w-[328px] h-[204px] font-raleway`}>
+    <div className={`bg-[#1E213A] p-4 text-white w-full max-w-[328px] h-[204px] font-raleway`}>
       <h3 className='text-base font-medium text-center mb-4'>{titulo}</h3>
       {renderContenido()}
     </div>

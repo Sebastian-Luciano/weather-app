@@ -4,6 +4,7 @@ import { useClima } from '../hooks/useClima';
 export default function SearchModal({ isOpen, onClose }) {
     const [searchTerm, setSearchTerm] = useState('');
     const { results, lastSearch, buscarLocaciones, buscarClimaManual, resetBusquedaManual } = useClima();
+
     useEffect(() => {
         if (!isOpen) {
             setSearchTerm('');
@@ -42,9 +43,9 @@ export default function SearchModal({ isOpen, onClose }) {
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder='Search location'
-                    className='flex-grow bg-transparent border border-white text-white p-2 pl-10'
+                    className='flex-grow bg-transparent border border-white text-white p-2 pl-10 h-12'
                 />
-                <button type='submit' className='bg-[#3C47E9] text-white px-4 py-2 ml-2'>
+                <button type='submit' className='bg-[#3C47E9] text-white px-4 py-2 ml-2 h-12 w-[86px]'>
                     Search
                 </button>
             </form>
@@ -56,7 +57,7 @@ export default function SearchModal({ isOpen, onClose }) {
                             <li
                                 key={index}
                                 onClick={() => handleSelectLocation(result.lat, result.lon)}
-                                className='cursor-pointer hover:border hover:border-white p-4 text-white relative group'
+                                className='cursor-pointer hover:border hover:border-white p-4 text-white relative group h-16'
                             >
                                 {result.name}, {result.state || result.fullCountryName}, {result.fullCountryName}
                                 <span className='absolute right-4 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity'>

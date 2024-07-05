@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-/* import { ClimaProvider } from './context/ClimaContext.jsx' */
 import { ImagenProvider } from './context/ImagenContext.jsx';
 import { ClimaSearchProvider } from './context/ClimaSearchContext.jsx';
 
